@@ -104,5 +104,10 @@
         "devServer" : {
             "https" : false
         }
+    },
+    "uniCloud" : {
+        "spaceId" : "env-00jy6g81zqkm",
+        "spaceProvider" : "aliyun",
+        "spaceName" : "parenting-guardian"
     }
 }
