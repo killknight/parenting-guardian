@@ -1,0 +1,78 @@
+<view class="container">
+  <!-- 顶部设备状态 -->
+  <view class="header">
+    <view class="status-card">
+      <view class="status-icon {{isOnline ? 'online' : 'offline'}}"></view>
+      <view class="status-info">
+        <text class="device-name">孩子手机</text>
+        <text class="status-text">{{isOnline ? '在线' : '离线'}}</text>
+      </view>
+      <text class="last-update">更新: {{lastUpdate}}</text>
+    </view>
+  </view>
+
+  <!-- 今日数据统计 -->
+  <view class="stats-section">
+    <view class="section-title">今日概况</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.screenTime}}</text>
+        <text class="stat-label">屏幕时长</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.appCount}}</text>
+        <text class="stat-label">使用应用</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.locationUpdate}}</text>
+        <text class="stat-label">位置更新</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{todayStats.alertCount}}</text>
+        <text class="stat-label">告警次数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="action-section">
+    <view class="section-title">快捷操作</view>
+    <view class="action-grid">
+      <view class="action-item" bindtap="goToControl">
+        <view class="action-icon lock-icon"></view>
+        <text class="action-text">远程锁屏</text>
+      </view>
+      <view class="action-item" bindtap="goToLocation">
+        <view class="action-icon location-icon"></view>
+        <text class="action-text">查看位置</text>
+      </view>
+      <view class="action-item" bindtap="goToUsage">
+        <view class="action-icon usage-icon"></view>
+        <text class="action-text">应用使用</text>
+      </view>
+      <view class="action-item" bindtap="sendAlert">
+        <view class="action-icon alert-icon"></view>
+        <text class="action-text">发送提醒</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设备信息 -->
+  <view class="device-section">
+    <view class="section-title">设备信息</view>
+    <view class="device-card">
+      <view class="device-row">
+        <text class="device-label">设备型号</text>
+        <text class="device-value">{{deviceInfo.model}}</text>
+      </view>
+      <view class="device-row">
+        <text class="device-label">电量</text>
+        <text class="device-value">{{deviceInfo.battery}}%</text>
+      </view>
+      <view class="device-row">
+        <text class="device-label">信号</text>
+        <text class="device-value">{{deviceInfo.signal}}</text>
+      </view>
+    </view>
+  </view>
+</view>

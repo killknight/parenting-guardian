@@ -1,0 +1,68 @@
+<view class="container">
+  <!-- 紧急求助 -->
+  <view class="emergency-section" bindtap="sendEmergencyAlert">
+    <view class="emergency-icon">⚠</view>
+    <text class="emergency-text">一键紧急求助</text>
+    <text class="emergency-desc">孩子可一键向家长发送求助信号</text>
+  </view>
+
+  <!-- 告警设置 -->
+  <view class="alert-section">
+    <view class="section-title">告警设置</view>
+    
+    <view class="alert-item">
+      <view class="alert-info">
+        <text class="alert-label">低电量告警</text>
+        <text class="alert-desc">孩子手机电量低于20%时通知</text>
+      </view>
+      <switch checked="{{alertSettings.lowBattery}}" bindchange="onSettingChange" data-type="lowBattery" />
+    </view>
+
+    <view class="alert-item">
+      <view class="alert-info">
+        <text class="alert-label">出范围告警</text>
+        <text class="alert-desc">孩子离开安全区域时通知</text>
+      </view>
+      <switch checked="{{alertSettings.outOfRange}}" bindchange="onSettingChange" data-type="outOfRange" />
+    </view>
+
+    <view class="alert-item">
+      <view class="alert-info">
+        <text class="alert-label">应用使用超时</text>
+        <text class="alert-desc">单个应用使用超过2小时通知</text>
+      </view>
+      <switch checked="{{alertSettings.appTimeout}}" bindchange="onSettingChange" data-type="appTimeout" />
+    </view>
+
+    <view class="alert-item">
+      <view class="alert-info">
+        <text class="alert-label">设备离线告警</text>
+        <text class="alert-desc">孩子手机离线超过30分钟通知</text>
+      </view>
+      <switch checked="{{alertSettings.deviceOffline}}" bindchange="onSettingChange" data-type="deviceOffline" />
+    </view>
+  </view>
+
+  <!-- 告警记录 -->
+  <view class="history-section">
+    <view class="section-header">
+      <text class="section-title">告警记录</text>
+    </view>
+    
+    <view class="history-list">
+      <view class="history-item" wx:for="{{alertHistory}}" wx:key="index">
+        <view class="history-icon {{item.type}}">
+          <text wx:if="{{item.type === 'sos'}}">!</text>
+          <text wx:elif="{{item.type === 'battery'}}">⚡</text>
+          <text wx:elif="{{item.type === 'geo'}}">📍</text>
+          <text wx:else>⏰</text>
+        </view>
+        <view class="history-info">
+          <text class="history-title">{{item.title}}</text>
+          <text class="history-desc">{{item.desc}}</text>
+          <text class="history-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

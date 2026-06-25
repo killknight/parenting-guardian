@@ -1,0 +1,184 @@
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20rpx;
+}
+
+.status-section {
+  margin-bottom: 20rpx;
+}
+
+.status-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16rpx;
+  padding: 60rpx 30rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.status-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin: 0 auto 20rpx;
+}
+
+.status-icon.locked {
+  background-color: rgba(255,255,255,0.2);
+}
+
+.status-icon.unlocked {
+  background-color: rgba(82, 196, 26, 0.5);
+}
+
+.status-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.status-desc {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+.control-section {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.control-item {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  text-align: center;
+  border: 4rpx solid transparent;
+}
+
+.control-item.active {
+  border-color: #4A90E2;
+  background-color: #f0f7ff;
+}
+
+.control-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin: 0 auto 15rpx;
+}
+
+.lock-icon {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+}
+
+.unlock-icon {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+}
+
+.control-label {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.control-desc {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.limit-section, .log-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.limit-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.limit-item:last-child {
+  border-bottom: none;
+}
+
+.limit-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+}
+
+.limit-label {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.limit-value {
+  font-size: 28rpx;
+  color: #4A90E2;
+}
+
+.time-picker {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  margin-right: 15rpx;
+}
+
+.log-list {
+  max-height: 300rpx;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 0;
+}
+
+.log-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 15rpx;
+}
+
+.log-dot.lock {
+  background-color: #FF6B6B;
+}
+
+.log-dot.unlock {
+  background-color: #52c41a;
+}
+
+.log-dot.limit {
+  background-color: #4A90E2;
+}
+
+.log-info {
+  flex: 1;
+}
+
+.log-text {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+}
+
+.log-time {
+  font-size: 22rpx;
+  color: #999;
+}

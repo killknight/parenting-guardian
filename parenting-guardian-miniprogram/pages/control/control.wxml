@@ -1,0 +1,73 @@
+<view class="container">
+  <!-- 当前状态 -->
+  <view class="status-section">
+    <view class="status-card">
+      <view class="status-icon {{isLocked ? 'locked' : 'unlocked'}}"></view>
+      <text class="status-text">{{isLocked ? '已锁定' : '已解锁'}}</text>
+      <text class="status-desc">{{isLocked ? '孩子手机已锁定' : '孩子手机可正常使用'}}</text>
+    </view>
+  </view>
+
+  <!-- 控制按钮 -->
+  <view class="control-section">
+    <view class="control-item {{isLocked ? 'active' : ''}}" bindtap="lockDevice">
+      <view class="control-icon lock-icon"></view>
+      <text class="control-label">锁定设备</text>
+      <text class="control-desc">立即锁定孩子手机</text>
+    </view>
+    
+    <view class="control-item {{!isLocked ? 'active' : ''}}" bindtap="unlockDevice">
+      <view class="control-icon unlock-icon"></view>
+      <text class="control-label">解锁设备</text>
+      <text class="control-desc">允许孩子正常使用</text>
+    </view>
+  </view>
+
+  <!-- 使用限制 -->
+  <view class="limit-section">
+    <view class="section-title">使用限制</view>
+    
+    <view class="limit-item">
+      <view class="limit-info">
+        <text class="limit-label">每日使用时长</text>
+        <text class="limit-value">{{dailyLimit}}小时</text>
+      </view>
+      <slider min="1" max="8" value="{{dailyLimit}}" bindchange="onDailyLimitChange" />
+    </view>
+
+    <view class="limit-item">
+      <view class="limit-info">
+        <text class="limit-label">使用时间段</text>
+        <text class="limit-value">{{timeRange}}</text>
+      </view>
+      <picker mode="time" value="{{startTime}}" bindchange="onStartTimeChange">
+        <view class="time-picker">开始: {{startTime}}</view>
+      </picker>
+      <picker mode="time" value="{{endTime}}" bindchange="onEndTimeChange">
+        <view class="time-picker">结束: {{endTime}}</view>
+      </picker>
+    </view>
+
+    <view class="limit-item">
+      <view class="limit-info">
+        <text class="limit-label">允许使用应用</text>
+        <text class="limit-value">{{allowedAppCount}}个</text>
+      </view>
+      <switch checked="{{appLimitEnabled}}" bindchange="onAppLimitChange" />
+    </view>
+  </view>
+
+  <!-- 操作记录 -->
+  <view class="log-section">
+    <view class="section-title">操作记录</view>
+    <view class="log-list">
+      <view class="log-item" wx:for="{{operationLog}}" wx:key="index">
+        <view class="log-dot {{item.type}}"></view>
+        <view class="log-info">
+          <text class="log-text">{{item.action}}</text>
+          <text class="log-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

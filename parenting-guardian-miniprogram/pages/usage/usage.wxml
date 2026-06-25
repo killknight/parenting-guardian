@@ -1,0 +1,61 @@
+<view class="container">
+  <!-- 今日概览 -->
+  <view class="overview-section">
+    <view class="overview-card">
+      <view class="overview-item">
+        <text class="overview-value">{{todayStats.totalTime}}</text>
+        <text class="overview-label">今日使用</text>
+      </view>
+      <view class="divider"></view>
+      <view class="overview-item">
+        <text class="overview-value">{{todayStats.appCount}}</text>
+        <text class="overview-label">应用数量</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 使用趋势 -->
+  <view class="chart-section">
+    <view class="section-title">本周使用趋势</view>
+    <view class="chart-placeholder">
+      <view class="chart-bar" wx:for="{{weekData}}" wx:key="index" style="height: {{item.height}}rpx">
+        <text class="bar-value">{{item.time}}</text>
+        <text class="bar-label">{{item.day}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 应用排行榜 -->
+  <view class="app-section">
+    <view class="section-header">
+      <text class="section-title">应用使用排行</text>
+      <text class="more-btn" bindtap="viewAll">查看全部</text>
+    </view>
+    
+    <view class="app-list">
+      <view class="app-item" wx:for="{{appUsageList}}" wx:key="index">
+        <view class="app-rank {{index < 3 ? 'top' : ''}}">{{index + 1}}</view>
+        <image class="app-icon" src="{{item.icon}}" mode="aspectFill" />
+        <view class="app-info">
+          <text class="app-name">{{item.name}}</text>
+          <text class="app-duration">{{item.duration}}</text>
+        </view>
+        <view class="app-bar-container">
+          <view class="app-bar" style="width: {{item.percent}}%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类统计 -->
+  <view class="category-section">
+    <view class="section-title">分类统计</view>
+    <view class="category-grid">
+      <view class="category-item" wx:for="{{categoryStats}}" wx:key="index">
+        <view class="category-icon" style="background-color: {{item.color}}"></view>
+        <text class="category-name">{{item.name}}</text>
+        <text class="category-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+</view>

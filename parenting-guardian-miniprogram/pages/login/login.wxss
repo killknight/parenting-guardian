@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4A90E2 0%, #67B26F 100%);
+  padding: 100rpx 50rpx;
+}
+
+.logo-section {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 80rpx;
+}
+
+.logo-icon {
+  font-size: 120rpx;
+  margin-bottom: 20rpx;
+}
+
+.app-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.app-slogan {
+  font-size: 28rpx;
+  opacity: 0.8;
+}
+
+.form-section {
+  background-color: #fff;
+  border-radius: 24rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 10rpx 40rpx rgba(0,0,0,0.1);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #f0f0f0;
+  padding: 20rpx 0;
+  margin-bottom: 10rpx;
+}
+
+.input-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.input-field {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.sms-btn {
+  background-color: #4A90E2;
+  color: #fff;
+  padding: 15rpx 25rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.sms-btn.disabled {
+  background-color: #ccc;
+}
+
+.role-section {
+  margin: 40rpx 0;
+}
+
+.role-label {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.role-options {
+  display: flex;
+  gap: 30rpx;
+}
+
+.role-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+  border: 4rpx solid #f0f0f0;
+  border-radius: 16rpx;
+}
+
+.role-item.active {
+  border-color: #4A90E2;
+  background-color: #f0f7ff;
+}
+
+.role-icon {
+  font-size: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.role-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.login-btn {
+  background: linear-gradient(135deg, #4A90E2 0%, #667eea 100%);
+  color: #fff;
+  text-align: center;
+  padding: 30rpx;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+}
+
+.switch-login {
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.switch-login text {
+  color: #4A90E2;
+  font-size: 28rpx;
+}

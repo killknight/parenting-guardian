@@ -1,0 +1,82 @@
+<view class="container">
+  <!-- Logo区域 -->
+  <view class="logo-section">
+    <view class="logo-icon">👨‍👩‍👧</view>
+    <text class="app-name">亲子守护</text>
+    <text class="app-slogan">守护孩子安全成长</text>
+  </view>
+
+  <!-- 登录表单 -->
+  <view class="form-section">
+    <view class="input-group">
+      <text class="input-icon">📱</text>
+      <input 
+        class="input-field" 
+        type="number" 
+        placeholder="请输入手机号" 
+        value="{{phone}}" 
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+
+    <view class="input-group" wx:if="{{loginType === 'password'}}">
+      <text class="input-icon">🔒</text>
+      <input 
+        class="input-field" 
+        password 
+        placeholder="请输入密码" 
+        value="{{password}}" 
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <view class="input-group" wx:if="{{loginType === 'sms'}}">
+      <text class="input-icon">📝</text>
+      <input 
+        class="input-field" 
+        type="number" 
+        placeholder="请输入验证码" 
+        value="{{smsCode}}" 
+        bindinput="onSmsCodeInput"
+        maxlength="6"
+      />
+      <view class="sms-btn {{countdown > 0 ? 'disabled' : ''}}" bindtap="sendSmsCode">
+        {{countdown > 0 ? countdown + 's' : '获取验证码'}}
+      </view>
+    </view>
+
+    <!-- 角色选择 -->
+    <view class="role-section">
+      <text class="role-label">登录身份</text>
+      <view class="role-options">
+        <view 
+          class="role-item {{userRole === 'parent' ? 'active' : ''}}" 
+          bindtap="selectRole" 
+          data-role="parent"
+        >
+          <text class="role-icon">👨</text>
+          <text class="role-text">家长</text>
+        </view>
+        <view 
+          class="role-item {{userRole === 'child' ? 'active' : ''}}" 
+          bindtap="selectRole" 
+          data-role="child"
+        >
+          <text class="role-icon">👦</text>
+          <text class="role-text">孩子</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <view class="login-btn" bindtap="doLogin">登录</view>
+
+    <!-- 切换登录方式 -->
+    <view class="switch-login">
+      <text bindtap="switchLoginType">
+        {{loginType === 'password' ? '验证码登录' : '密码登录'}}
+      </text>
+    </view>
+  </view>
+</view>

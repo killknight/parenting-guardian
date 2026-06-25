@@ -1,0 +1,147 @@
+.container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20rpx;
+}
+
+.emergency-section {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+  border-radius: 16rpx;
+  padding: 60rpx;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.emergency-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.emergency-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.emergency-desc {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+.alert-section, .history-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.alert-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.alert-item:last-child {
+  border-bottom: none;
+}
+
+.alert-info {
+  flex: 1;
+}
+
+.alert-label {
+  font-size: 30rpx;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.alert-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-list {
+  max-height: 400rpx;
+}
+
+.history-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  font-size: 28rpx;
+}
+
+.history-icon.sos {
+  background-color: #FF4757;
+  color: #fff;
+}
+
+.history-icon.battery {
+  background-color: #F6D365;
+}
+
+.history-icon.geo {
+  background-color: #4A90E2;
+}
+
+.history-icon.timeout {
+  background-color: #999;
+}
+
+.history-info {
+  flex: 1;
+}
+
+.history-title {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.history-desc {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.history-time {
+  font-size: 22rpx;
+  color: #999;
+}
