@@ -102,6 +102,7 @@ const routes = [
   { path: '/api/auth/login', method: 'POST', action: 'auth.login', auth: false },
   { path: '/api/auth/register', method: 'POST', action: 'auth.register', auth: false },
   { path: '/api/auth/send-sms', method: 'POST', action: 'auth.sendCode', auth: false },
+  { path: '/api/auth/wechat-login', method: 'POST', action: 'auth.wechatLogin', auth: false },
 
   // 用户相关 (需要登录)
   { path: '/api/user/info', method: 'GET', action: 'user.getProfile', auth: true },
@@ -178,6 +179,8 @@ async function callAction(action, data, context) {
       return require('./auth/register').main(data, context);
     case 'auth.sendCode':
       return require('./auth/sendCode').main(data, context);
+    case 'auth.wechatLogin':
+      return require('./auth/wechatLogin').main(data, context);
 
     // 用户
     case 'user.getProfile':

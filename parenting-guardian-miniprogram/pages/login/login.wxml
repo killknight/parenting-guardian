@@ -78,5 +78,16 @@
         {{loginType === 'password' ? '验证码登录' : '密码登录'}}
       </text>
     </view>
+
+    <!-- 分隔线 -->
+    <view class="divider-line">
+      <text class="divider-text">其他登录方式</text>
+    </view>
+
+    <!-- 微信一键登录 -->
+    <view class="wechat-login-btn" bindtap="wechatLogin">
+      <text class="wechat-icon">💬</text>
+      <text class="wechat-text">微信一键登录</text>
+    </view>
   </view>
 </view>

@@ -21,6 +21,8 @@ exports.main = async (event, context) => {
         return require('./auth/register').main(data, context);
       case 'auth.sendCode':
         return require('./auth/sendCode').main(data, context);
+      case 'auth.wechatLogin':
+        return require('./auth/wechatLogin').main(data, context);
       case 'auth.logout':
         return require('./auth/logout').main(data, context);
 

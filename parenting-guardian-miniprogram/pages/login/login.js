@@ -110,5 +110,69 @@ Page({
         }
       }
     });
+  },
+
+  // 微信一键登录
+  wechatLogin() {
+    wx.showLoading({ title: '登录中...', mask: true });
+
+    wx.login({
+      success: (res) => {
+        if (res.code) {
+          // 获取用户信息
+          wx.getUserProfile({
+            desc: '用于完善会员资料',
+            success: (userRes) => {
+              const userInfo = userRes.userInfo;
+              this.doWechatLogin(res.code, userInfo);
+            },
+            fail: () => {
+              // 用户拒绝授权，仍用code登录
+              this.doWechatLogin(res.code, null);
+            }
+          });
+        } else {
+          wx.hideLoading();
+          wx.showToast({ title: '微信登录失败', icon: 'none' });
+        }
+      },
+      fail: () => {
+        wx.hideLoading();
+        wx.showToast({ title: '微信登录失败', icon: 'none' });
+      }
+    });
+  },
+
+  doWechatLogin(code, userInfo) {
+    wx.request({
+      url: `${app.globalData.serverUrl}/api/auth/wechat-login`,
+      method: 'POST',
+      header: { 'Content-Type': 'application/json' },
+      data: {
+        code,
+        userInfo: userInfo || undefined,
+        role: this.data.userRole
+      },
+      success: (res) => {
+        wx.hideLoading();
+        if (res.statusCode === 200 && res.data.token) {
+          app.globalData.token = res.data.token;
+          app.globalData.userRole = res.data.role || this.data.userRole;
+          wx.setStorageSync('token', res.data.token);
+          wx.setStorageSync('userRole', res.data.role || this.data.userRole);
+          
+          wx.showToast({ title: '登录成功', icon: 'success' });
+          setTimeout(() => {
+            wx.switchTab({ url: '/pages/home/home' });
+          }, 1000);
+        } else {
+          wx.showToast({ title: res.data.message || '登录失败', icon: 'none' });
+        }
+      },
+      fail: () => {
+        wx.hideLoading();
+        wx.showToast({ title: '网络错误', icon: 'none' });
+      }
+    });
   }
 });
