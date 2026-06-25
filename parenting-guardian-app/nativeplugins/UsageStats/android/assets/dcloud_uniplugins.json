@@ -1,0 +1,7 @@
+[
+  {
+    "name": "UsageStats",
+    "class": "com.parenting.guardian.plugin.UsageStatsModule",
+    "type": "module"
+  }
+]

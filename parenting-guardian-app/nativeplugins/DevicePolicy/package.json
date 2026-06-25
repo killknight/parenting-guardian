@@ -1,0 +1,23 @@
+{
+  "name": "DevicePolicy",
+  "id": "DevicePolicy",
+  "version": "1.0.0",
+  "description": "设备策略管理插件，实现远程锁屏/解锁功能",
+  "_dp_type": "nativeplugin",
+  "_dp_nativeplugin": {
+    "android": {
+      "plugins": [
+        {
+          "type": "module",
+          "name": "DevicePolicy",
+          "class": "com.parenting.guardian.plugin.DevicePolicyModule"
+        }
+      ],
+      "permissions": [
+        "<uses-permission android:name=\"android.permission.DISABLE_KEYGUARD\" />",
+        "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />"
+      ],
+      "minSdkVersion": 24
+    }
+  }
+}

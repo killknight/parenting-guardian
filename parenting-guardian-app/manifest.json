@@ -1,0 +1,108 @@
+{
+    "name" : "亲子守护",
+    "appid" : "__UNI__PARENTING",
+    "description" : "帮助家长了解和引导孩子健康使用手机的守护工具",
+    "versionName" : "1.0.0",
+    "versionCode" : "100",
+    "transformPx" : false,
+    "app-plus" : {
+        "usingComponents" : true,
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "modules" : {},
+        "distribute" : {
+            "android" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_BACKGROUND_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\"/>",
+                    "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+                    "<uses-permission android:name=\"android.permission.PACKAGE_USAGE_STATS\"/>",
+                    "<uses-permission android:name=\"android.permission.QUERY_ALL_PACKAGES\"/>",
+                    "<uses-permission android:name=\"android.permission.SYSTEM_ALERT_WINDOW\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS\"/>",
+                    "<uses-permission android:name=\"android.permission.DISABLE_KEYGUARD\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
+                ],
+                "minSdkVersion" : 24,
+                "targetSdkVersion" : 31
+            },
+            "ios" : {},
+            "sdkConfigs" : {
+                "push" : "unipush",
+                "geolocation" : {}
+            }
+        },
+        "nativePlugins" : {
+            "UsageStats" : {
+                "__plugin_info__" : {
+                    "name" : "应用使用统计",
+                    "description" : "获取前台应用和使用时长",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "com.parenting.guardian.plugin",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            },
+            "DevicePolicy" : {
+                "__plugin_info__" : {
+                    "name" : "设备策略管理",
+                    "description" : "远程锁屏/解锁功能",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "com.parenting.guardian.plugin",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            },
+            "ForegroundService" : {
+                "__plugin_info__" : {
+                    "name" : "前台服务",
+                    "description" : "后台保活服务",
+                    "platforms" : "Android",
+                    "url" : "",
+                    "android_package_name" : "com.parenting.guardian.plugin",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
+        }
+    },
+    "quickapp" : {},
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "h5" : {
+        "router" : {
+            "mode" : "hash",
+            "base" : "/"
+        },
+        "devServer" : {
+            "https" : false
+        }
+    }
+}

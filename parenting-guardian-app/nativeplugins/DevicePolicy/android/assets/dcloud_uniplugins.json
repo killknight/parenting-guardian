@@ -1,0 +1,7 @@
+[
+  {
+    "name": "DevicePolicy",
+    "class": "com.parenting.guardian.plugin.DevicePolicyModule",
+    "type": "module"
+  }
+]

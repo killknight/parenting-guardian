@@ -1,0 +1,25 @@
+{
+  "name": "ForegroundService",
+  "id": "ForegroundService",
+  "version": "1.0.0",
+  "description": "前台服务插件，实现后台保活",
+  "_dp_type": "nativeplugin",
+  "_dp_nativeplugin": {
+    "android": {
+      "plugins": [
+        {
+          "type": "module",
+          "name": "ForegroundService",
+          "class": "com.parenting.guardian.plugin.ForegroundServiceModule"
+        }
+      ],
+      "permissions": [
+        "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE\" />",
+        "<uses-permission android:name=\"android.permission.FOREGROUND_SERVICE_LOCATION\" />",
+        "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+        "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\" />"
+      ],
+      "minSdkVersion": 24
+    }
+  }
+}

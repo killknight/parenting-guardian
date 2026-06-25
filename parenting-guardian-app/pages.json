@@ -1,0 +1,78 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/location/index",
+      "style": {
+        "navigationBarTitleText": "位置守护"
+      }
+    },
+    {
+      "path": "pages/control/index",
+      "style": {
+        "navigationBarTitleText": "远程控制"
+      }
+    },
+    {
+      "path": "pages/alert/index",
+      "style": {
+        "navigationBarTitleText": "告警消息"
+      }
+    },
+    {
+      "path": "pages/settings/index",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "亲子守护",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#007AFF",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/location/index",
+        "text": "位置",
+        "iconPath": "static/tabbar/location.png",
+        "selectedIconPath": "static/tabbar/location-active.png"
+      },
+      {
+        "pagePath": "pages/control/index",
+        "text": "控制",
+        "iconPath": "static/tabbar/control.png",
+        "selectedIconPath": "static/tabbar/control-active.png"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/mine.png",
+        "selectedIconPath": "static/tabbar/mine-active.png"
+      }
+    ]
+  }
+}

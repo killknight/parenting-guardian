@@ -1,0 +1,7 @@
+[
+  {
+    "name": "ForegroundService",
+    "class": "com.parenting.guardian.plugin.ForegroundServiceModule",
+    "type": "module"
+  }
+]
