@@ -1,0 +1,75 @@
+{
+  "bsonType": "object",
+  "required": ["parentId", "childId", "type", "status", "createTime"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "指令ID，系统自动生成"
+    },
+    "parentId": {
+      "bsonType": "string",
+      "label": "家长用户ID",
+      "description": "发送指令的家长用户ID"
+    },
+    "childId": {
+      "bsonType": "string",
+      "label": "孩子用户ID",
+      "description": "接收指令的孩子用户ID"
+    },
+    "type": {
+      "enum": ["lock", "unlock", "limit", "sos"],
+      "label": "指令类型",
+      "description": "lock=锁屏，unlock=解锁，limit=应用限额，sos=紧急求助"
+    },
+    "status": {
+      "enum": ["pending", "sent", "executed", "failed", "cancelled"],
+      "label": "指令状态",
+      "description": "pending=待发送，sent=已发送，executed=已执行，failed=执行失败，cancelled=已取消"
+    },
+    "packageName": {
+      "bsonType": "string",
+      "label": "应用包名",
+      "description": "应用限额时使用，指定要限制的应用"
+    },
+    "appName": {
+      "bsonType": "string",
+      "label": "应用名称",
+      "description": "应用显示名称"
+    },
+    "duration": {
+      "bsonType": "int",
+      "label": "锁屏时长(秒)",
+      "description": "锁屏时长，单位：秒，0表示永久锁屏"
+    },
+    "dailyLimit": {
+      "bsonType": "int",
+      "label": "每日限额(秒)",
+      "description": "应用每日使用限额，单位：秒"
+    },
+    "message": {
+      "bsonType": "string",
+      "label": "指令消息",
+      "description": "发送给孩子的消息"
+    },
+    "createTime": {
+      "bsonType": "timestamp",
+      "label": "创建时间",
+      "description": "指令创建时间"
+    },
+    "sendTime": {
+      "bsonType": "timestamp",
+      "label": "发送时间",
+      "description": "指令发送时间"
+    },
+    "executeTime": {
+      "bsonType": "timestamp",
+      "label": "执行时间",
+      "description": "指令执行时间"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "parenting-guardian",
+  "version": "1.0.0",
+  "spaceId": "env-00jy6g81zqkm",
+  "provider": "aliyun",
+  "functions": [
+    {
+      "name": "cloudfunctions",
+      "path": "/",
+      "handler": "index.main",
+      "timeout": 60,
+      "memoryLimit": 256
+    }
+  ],
+  "database": {
+    "collections": [
+      "users",
+      "devices",
+      "bindings",
+      "usage_records",
+      "location_records",
+      "commands",
+      "alerts",
+      "geofences",
+      "geofence_events"
+    ]
+  }
+}

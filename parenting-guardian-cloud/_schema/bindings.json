@@ -1,0 +1,70 @@
+{
+  "bsonType": "object",
+  "required": ["parentId", "bindingCode", "status", "createTime"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "绑定ID，系统自动生成"
+    },
+    "parentId": {
+      "bsonType": "string",
+      "label": "家长用户ID",
+      "description": "家长用户的ID"
+    },
+    "childId": {
+      "bsonType": "string",
+      "label": "孩子用户ID",
+      "description": "孩子用户的ID"
+    },
+    "childNickname": {
+      "bsonType": "string",
+      "label": "孩子昵称",
+      "description": "孩子的昵称"
+    },
+    "bindingCode": {
+      "bsonType": "string",
+      "label": "绑定码",
+      "description": "6位数字绑定码"
+    },
+    "status": {
+      "enum": ["pending", "waiting_confirm", "active", "expired", "unbound"],
+      "label": "绑定状态",
+      "description": "pending=待使用，waiting_confirm=待确认，active=已绑定，expired=已过期，unbound=已解除"
+    },
+    "relationship": {
+      "bsonType": "string",
+      "label": "关系",
+      "description": "家长与孩子的关系，如：父子、父女、母子、母女"
+    },
+    "expireTime": {
+      "bsonType": "timestamp",
+      "label": "过期时间",
+      "description": "绑定码过期时间"
+    },
+    "createTime": {
+      "bsonType": "timestamp",
+      "label": "创建时间",
+      "description": "绑定记录创建时间"
+    },
+    "applyTime": {
+      "bsonType": "timestamp",
+      "label": "申请时间",
+      "description": "孩子申请绑定时间"
+    },
+    "confirmTime": {
+      "bsonType": "timestamp",
+      "label": "确认时间",
+      "description": "家长确认绑定时间"
+    },
+    "unbindTime": {
+      "bsonType": "timestamp",
+      "label": "解除时间",
+      "description": "解除绑定时间"
+    }
+  }
+}

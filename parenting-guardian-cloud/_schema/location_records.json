@@ -1,0 +1,60 @@
+{
+  "bsonType": "object",
+  "required": ["userId", "latitude", "longitude", "timestamp"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "记录ID，系统自动生成"
+    },
+    "userId": {
+      "bsonType": "string",
+      "label": "用户ID",
+      "description": "孩子用户ID"
+    },
+    "latitude": {
+      "bsonType": "double",
+      "label": "纬度",
+      "description": "纬度"
+    },
+    "longitude": {
+      "bsonType": "double",
+      "label": "经度",
+      "description": "经度"
+    },
+    "accuracy": {
+      "bsonType": "double",
+      "label": "精度",
+      "description": "定位精度，单位：米"
+    },
+    "altitude": {
+      "bsonType": "double",
+      "label": "海拔",
+      "description": "海拔高度，单位：米"
+    },
+    "speed": {
+      "bsonType": "double",
+      "label": "速度",
+      "description": "移动速度，单位：米/秒"
+    },
+    "address": {
+      "bsonType": "string",
+      "label": "地址",
+      "description": "地址描述"
+    },
+    "locationType": {
+      "enum": ["gps", "network", "fused"],
+      "label": "定位类型",
+      "description": "gps=GPS定位，network=网络定位，fused=融合定位"
+    },
+    "timestamp": {
+      "bsonType": "timestamp",
+      "label": "定位时间",
+      "description": "定位时间戳"
+    }
+  }
+}

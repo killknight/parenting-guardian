@@ -1,0 +1,80 @@
+{
+  "bsonType": "object",
+  "required": ["userId", "type", "status", "createTime"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "告警ID，系统自动生成"
+    },
+    "userId": {
+      "bsonType": "string",
+      "label": "用户ID",
+      "description": "触发告警的用户ID"
+    },
+    "targetUserId": {
+      "bsonType": "string",
+      "label": "目标用户ID",
+      "description": "接收告警的用户ID（家长）"
+    },
+    "type": {
+      "enum": ["sos", "geofence_in", "geofence_out", "app_limit", "low_battery", "offline"],
+      "label": "告警类型",
+      "description": "sos=紧急求助，geofence_in=进入围栏，geofence_out=离开围栏，app_limit=应用限额提醒，low_battery=低电量，offline=设备离线"
+    },
+    "status": {
+      "enum": ["unread", "read", "handled"],
+      "label": "处理状态",
+      "description": "unread=未读，read=已读，handled=已处理"
+    },
+    "title": {
+      "bsonType": "string",
+      "label": "告警标题",
+      "description": "告警标题"
+    },
+    "content": {
+      "bsonType": "string",
+      "label": "告警内容",
+      "description": "告警详细描述"
+    },
+    "latitude": {
+      "bsonType": "double",
+      "label": "纬度",
+      "description": "告警发生位置纬度"
+    },
+    "longitude": {
+      "bsonType": "double",
+      "label": "经度",
+      "description": "告警发生位置经度"
+    },
+    "address": {
+      "bsonType": "string",
+      "label": "地址",
+      "description": "告警发生地址"
+    },
+    "metadata": {
+      "bsonType": "object",
+      "label": "附加数据",
+      "description": "告警附加数据，如围栏名称等"
+    },
+    "createTime": {
+      "bsonType": "timestamp",
+      "label": "创建时间",
+      "description": "告警创建时间"
+    },
+    "readTime": {
+      "bsonType": "timestamp",
+      "label": "阅读时间",
+      "description": "告警被阅读时间"
+    },
+    "handleTime": {
+      "bsonType": "timestamp",
+      "label": "处理时间",
+      "description": "告警处理时间"
+    }
+  }
+}

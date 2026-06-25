@@ -1,0 +1,65 @@
+{
+  "bsonType": "object",
+  "required": ["parentId", "childId", "latitude", "longitude", "radius"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "围栏ID，系统自动生成"
+    },
+    "parentId": {
+      "bsonType": "string",
+      "label": "家长用户ID",
+      "description": "创建围栏的家长用户ID"
+    },
+    "childId": {
+      "bsonType": "string",
+      "label": "孩子用户ID",
+      "description": "被监护的孩子用户ID"
+    },
+    "name": {
+      "bsonType": "string",
+      "label": "围栏名称",
+      "description": "围栏名称，如：学校、家"
+    },
+    "latitude": {
+      "bsonType": "double",
+      "label": "中心纬度",
+      "description": "围栏中心点纬度"
+    },
+    "longitude": {
+      "bsonType": "double",
+      "label": "中心经度",
+      "description": "围栏中心点经度"
+    },
+    "radius": {
+      "bsonType": "int",
+      "label": "半径(米)",
+      "description": "围栏半径，单位：米"
+    },
+    "enable": {
+      "bsonType": "bool",
+      "label": "是否启用",
+      "description": "围栏是否启用"
+    },
+    "alertType": {
+      "enum": ["in", "out", "both"],
+      "label": "告警类型",
+      "description": "in=进入告警，out=离开告警，both=进出都告警"
+    },
+    "createTime": {
+      "bsonType": "timestamp",
+      "label": "创建时间",
+      "description": "围栏创建时间"
+    },
+    "updateTime": {
+      "bsonType": "timestamp",
+      "label": "更新时间",
+      "description": "围栏最后更新时间"
+    }
+  }
+}
