@@ -17,12 +17,44 @@
 
 ## ✨ 功能特性
 
-- 📱 **应用使用统计** - 记录孩子手机各应用使用时长
+- 📱 **应用使用统计** - 记录孩子手机各应用使用时长、排行榜
 - 🗺️ **实时位置追踪** - 查看孩子实时位置和历史轨迹
 - 🔒 **远程锁屏控制** - 一键锁定/解锁孩子手机
 - ⏰ **使用时长限制** - 设置每日使用时长和使用时间段
 - 🚨 **SOS 紧急求助** - 孩子一键向家长发送求助信号
 - 🔔 **智能告警** - 低电量、出范围等自动提醒
+- 👨‍👩‍👧 **亲子绑定** - 扫码/输入绑定码快速关联
+- 🏠 **电子围栏** - 设置安全区域，出入自动提醒
+
+## 📸 页面预览
+
+> 💡 以下为 H5 演示版截图，实际 App 和小程序界面风格一致。
+
+### 家长端
+
+| 登录页 | 首页概览 |
+|:---:|:---:|
+| ![登录页](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-38-16-714.png) | ![首页概览](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-38-37-041.png) |
+| 手机号/验证码登录，支持家长和孩子两种角色 | 实时查看孩子手机状态、今日使用时长、设备信息 |
+
+| 位置守护 | 远程控制 |
+|:---:|:---:|
+| ![位置守护](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-39-19-886.png) | ![远程控制](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-39-47-469.png) |
+| 实时查看孩子位置、历史轨迹、地址信息 | 一键锁屏/解锁、设置使用时长、使用时间段限制 |
+
+| 设置页面 | 告警中心 |
+|:---:|:---:|
+| ![设置页面](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-40-21-788.png) | （参考孩子端SOS页面） |
+| 设备管理、通知设置、隐私设置、账号管理 | SOS 求助、低电量告警、出范围告警等 |
+
+### 孩子端
+
+| 孩子首页 | SOS 求助 |
+|:---:|:---:|
+| ![孩子首页](https://raw.githubusercontent.com/killknight/parenting-guardian/master/parenting-guardian-h5/screenshots/page-2026-06-25T05-38-59-128.png) | （与告警页类似） |
+| 显示今日使用时长、剩余可用时间、设备状态 | 一键向家长发送紧急求助信号，带位置信息 |
+
+> 📱 以上为 H5 演示版截图，仅供参考。实际 App 端包含原生插件能力（应用使用统计、远程锁屏、前台服务保活等）。
 
 ## 🏗️ 项目结构
 
