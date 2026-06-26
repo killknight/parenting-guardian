@@ -60,7 +60,7 @@ def main():
             margin: 2cm;
         }
         body {
-            font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;
+            font-family: "WenQuanYi Micro Hei", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
             font-size: 12px;
             line-height: 1.6;
             color: #333;
