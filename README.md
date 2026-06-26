@@ -4,14 +4,16 @@
 
 ## 🌟 项目介绍
 
-这是一个**三端架构**的亲子守护项目：
+基于 **uni-app + uniCloud（支付宝云）** 开发的亲子守护项目，**一套代码，多端运行**：
 
-| 端 | 技术栈 | 适用人群 | 目录 |
-|---|---|---|---|
-| 孩子端 App | uni-app (Android) | 安装在孩子手机上 | `parenting-guardian-app/` |
-| 家长端小程序 | 微信小程序 | 家长在微信里使用 | `parenting-guardian-miniprogram/` |
-| 服务端 | 支付宝云云函数 | 后台数据服务 | `parenting-guardian-cloud/` |
-| H5 演示版 | Vue3 + Vite | 快速预览效果 | `parenting-guardian-h5/` |
+| 端 | 运行方式 | 适用人群 |
+|---|---|---|
+| 孩子端 | 编译为 Android App，安装到孩子手机 | 孩子 |
+| 家长端 | 编译为微信小程序，家长在微信里用 | 家长 |
+| 家长端（可选） | 编译为 H5，浏览器直接打开 | 家长 |
+| 服务端 | uniCloud 云函数（在 uni-app 项目里） | - |
+
+> 💡 **重点说明**：云函数直接放在 `uniCloud/cloudfunctions/` 目录下，跟着前端项目走，不需要单独的服务端项目！通过 `uniCloud.callFunction()` 调用。
 
 ## ✨ 功能特性
 
@@ -26,108 +28,79 @@
 
 ```
 parenting-guardian/
-├── parenting-guardian-app/          # 孩子端 uni-app (Android)
-│   ├── pages/                        # 页面
-│   ├── nativeplugins/                # 原生插件 (UsageStats/DevicePolicy/ForegroundService)
-│   ├── api/                          # 接口封装
-│   └── manifest.json                 # 应用配置
-├── parenting-guardian-miniprogram/   # 家长端 微信小程序
-│   ├── pages/                        # 页面 (home/location/control/usage/...)
-│   ├── app.js                        # 小程序入口
-│   └── app.json                      # 小程序配置
-├── parenting-guardian-cloud/         # 支付宝云 云函数
-│   ├── auth/                         # 认证模块 (登录/注册/微信登录)
-│   ├── device/                       # 设备模块
-│   ├── usage/                        # 使用统计模块
-│   ├── location/                     # 位置模块
-│   ├── command/                      # 指令模块 (锁屏/解锁)
-│   ├── alert/                        # 告警模块
-│   ├── binding/                      # 绑定模块
-│   ├── user/                         # 用户模块
-│   ├── geofence/                     # 围栏模块
-│   ├── index.js                      # 云函数入口
-│   ├── http-api.js                   # HTTP API 入口 (供小程序调用)
-│   └── _schema/                      # 数据库集合 Schema
-└── parenting-guardian-h5/            # H5 演示版
-    ├── src/views/                    # 页面
-    └── package.json
+├── parenting-guardian-app/          # 🌟 主工程（uni-app + uniCloud）
+│   ├── pages/                        # 页面（孩子端 + 家长端共用，按角色区分）
+│   │   ├── login/                    # 登录注册
+│   │   ├── home/                     # 首页
+│   │   ├── location/                 # 位置
+│   │   ├── control/                  # 控制
+│   │   ├── alert/                    # 告警/SOS
+│   │   └── settings/                 # 设置
+│   ├── nativeplugins/                # Android 原生插件
+│   │   ├── UsageStats/               # 应用使用统计
+│   │   ├── DevicePolicy/             # 设备管理员/锁屏
+│   │   └── ForegroundService/        # 前台服务保活
+│   ├── uniCloud/                     # ☁️ 云函数（跟着前端项目走）
+│   │   ├── cloudfunctions/
+│   │   │   └── cloudfunctions/       # 统一入口云函数
+│   │   │       ├── index.js          # 入口（路由到各模块）
+│   │   │       ├── auth/             # 认证模块
+│   │   │       ├── user/             # 用户模块
+│   │   │       ├── binding/          # 绑定模块
+│   │   │       ├── device/           # 设备模块
+│   │   │       ├── usage/            # 使用统计
+│   │   │       ├── location/         # 位置模块
+│   │   │       ├── command/          # 指令模块
+│   │   │       ├── alert/            # 告警模块
+│   │   │       ├── geofence/         # 围栏模块
+│   │   │       └── package.json
+│   │   └── space-info.json           # 云服务空间配置
+│   ├── api/                          # 接口封装（uniCloud.callFunction）
+│   ├── store/                        # 状态管理
+│   ├── manifest.json                 # 应用配置
+│   └── pages.json                    # 页面路由
+├── parenting-guardian-miniprogram/   # （可选）原生微信小程序版
+│   └── ...                           # 如需原生小程序开发可用这个
+├── parenting-guardian-cloud/         # （旧）独立云函数目录
+│   └── ...                           # 已迁移到 parenting-guardian-app/uniCloud/
+└── parenting-guardian-h5/            # H5 演示版（Vue3 + Vite）
+    └── ...                           # 快速预览效果用
 ```
 
 ## 🚀 快速开始（小白推荐）
 
-如果你是第一次接触这个项目，建议先从 **H5 演示版**开始，可以最快看到效果。
+### 前置准备
 
-### 方式一：运行 H5 演示版（最推荐，5分钟搞定）
+1. 下载安装 **HBuilderX**（uni-app 官方 IDE）：https://www.dcloud.io/hbuilderx.html
+2. 注册 **支付宝云** 账号（免费额度够用）：https://cloud.alipay.com/
+3. （可选）注册 **微信小程序** 账号：https://mp.weixin.qq.com/
 
-**前置条件：** 电脑上安装了 Node.js（建议 16.x 或更高版本）
+### 第一步：导入项目
 
-> 不知道怎么装 Node.js？搜索 "Node.js 官网下载"，下载 LTS 版本一路下一步安装即可。
+1. 打开 HBuilderX
+2. 「文件 → 打开目录」，选择 `parenting-guardian-app` 文件夹
+3. 等待项目加载完成
 
-```bash
-# 1. 进入 H5 演示版目录
-cd parenting-guardian-h5
+### 第二步：配置云服务空间
 
-# 2. 安装依赖
-npm install
+1. 登录支付宝云控制台，创建服务空间，名字随便起
+2. 创建完成后，复制 **SpaceID**
+3. 在 HBuilderX 中，右键 `uniCloud` 目录 → 「关联云服务空间」
+4. 选择你创建的空间，完成关联
 
-# 3. 启动开发服务器
-npm run dev
-```
+> 或者直接修改 `manifest.json` 里的 `uniCloud.spaceId` 为你的 SpaceID。
 
-启动成功后，浏览器打开 `http://localhost:5173` 就能看到效果了！
+### 第三步：上传云函数
 
----
+1. 在 HBuilderX 中，右键 `uniCloud/cloudfunctions/cloudfunctions` 目录
+2. 点击「上传部署 → 上传并运行」
+3. 等待上传完成（第一次可能需要安装依赖，稍等几分钟）
 
-### 方式二：运行微信小程序（家长端）
+> ⚠️ 注意：云函数名是 `cloudfunctions`，前端调用时也用这个名字。
 
-**前置条件：**
-1. 下载并安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
-2. 注册一个微信小程序账号（没有也可以用测试号）
+### 第四步：创建数据库集合
 
-**步骤：**
-
-1. 打开微信开发者工具
-2. 点击「导入项目」
-3. 目录选择：`parenting-guardian-miniprogram`
-4. AppID：如果没有就选「测试号」
-5. 点击「导入」即可预览
-
-> ⚠️ 注意：小程序默认调用支付宝云的 HTTP API，部署云函数后才能正常使用。
-
----
-
-### 方式三：运行孩子端 App（uni-app）
-
-**前置条件：**
-1. 下载并安装 [HBuilderX](https://www.dcloud.io/hbuilderx.html)（uni-app 官方 IDE）
-2. 准备一台 Android 手机（或模拟器）
-
-**步骤：**
-
-1. 用 HBuilderX 打开 `parenting-guardian-app` 目录
-2. 手机连接电脑，开启「USB 调试」
-3. 点击菜单「运行 → 运行到手机或模拟器 → 运行到 Android App 基座」
-4. 手机上确认安装即可
-
-> 💡 提示：原生插件需要打自定义基座才能生效，开发调试可以先不用插件。
-
----
-
-## ☁️ 部署服务端（支付宝云）
-
-服务端使用支付宝云（类似 uniCloud），需要先注册支付宝云账号。
-
-### 第一步：创建云服务空间
-
-1. 登录 [支付宝云控制台](https://cloud.alipay.com/)
-2. 点击「创建服务空间」
-3. 空间名：`parenting-guardian`
-4. 选择按量付费（免费额度够用）
-5. 创建完成后，记住你的 **SpaceID**
-
-### 第二步：创建数据库集合
-
-在支付宝云控制台 → 数据库 → 新建集合，依次创建以下 9 个集合：
+在支付宝云控制台 → 数据库 → 新建集合，创建以下 9 个集合：
 
 | 集合名 | 说明 |
 |---|---|
@@ -141,95 +114,182 @@ npm run dev
 | `geofences` | 电子围栏 |
 | `geofence_events` | 围栏事件 |
 
-每个集合的 Schema 定义在 `parenting-guardian-cloud/_schema/` 目录下，可以参考创建字段。
+> 💡 集合的字段可以先不建，云函数运行时会自动写入。
 
-### 第三步：部署云函数
+### 第五步：运行项目
 
-**方式 A：通过 HBuilderX 部署（推荐）**
+#### 📱 方式 A：运行到 Android 手机（孩子端）
 
-1. 用 HBuilderX 打开 `parenting-guardian-app` 项目
-2. 右键 `uniCloud` 目录 → 关联云服务空间
-3. 选择你创建的空间
-4. 右键云函数目录 → 上传部署
+1. 用 USB 连接手机，开启「USB 调试」
+2. 在 HBuilderX 中，点击「运行 → 运行到手机或模拟器 → 运行到 Android App 基座」
+3. 手机上确认安装，打开 App 即可
 
-**方式 B：手动上传代码包**
+> 💡 原生插件（锁屏、使用统计等）需要打「自定义基座」才能生效。
 
-1. 将 `parenting-guardian-cloud` 目录打包成 zip
-2. 在支付宝云控制台 → 云函数 → 新建云函数
-3. 函数名：`cloudfunctions`
-4. 上传代码包
-5. 配置 HTTP 触发器（路径：`/api/*`）
+#### 💬 方式 B：运行到微信小程序（家长端）
 
-### 第四步：配置环境变量
+1. 打开微信开发者工具
+2. 在 HBuilderX 中，点击「运行 → 运行到小程序模拟器 → 微信开发者工具」
+3. 首次运行需要配置微信开发者工具路径和小程序 AppID
+4. 微信开发者工具会自动打开并加载项目
 
-在支付宝云控制台 → 云函数 → 配置 → 环境变量：
+> 没有 AppID 可以选「测试号」。
 
-| 变量名 | 说明 | 必填 |
-|---|---|---|
-| `JWT_SECRET` | Token 加密密钥（随便填一串复杂字符）| 是 |
-| `WECHAT_APPID` | 微信小程序 AppID | 否 |
-| `WECHAT_SECRET` | 微信小程序 AppSecret | 否 |
+#### 🌐 方式 C：运行到 H5（浏览器预览）
 
-> 💡 不填微信相关的变量也可以，会自动使用 mock 模式登录。
+1. 在 HBuilderX 中，点击「运行 → 运行到浏览器 → Chrome」
+2. 浏览器会自动打开
 
-### 第五步：获取 HTTP 访问地址
+> H5 模式下原生插件功能不可用，仅用于界面预览。
 
-部署完成后，在支付宝云控制台找到云函数的 **HTTP 访问地址**，格式类似：
+#### ⚡ 方式 D：H5 演示版（最快，5 分钟）
+
+如果不想装 HBuilderX，可以直接跑演示版：
+
+```bash
+cd parenting-guardian-h5
+npm install
+npm run dev
 ```
-https://env-xxxxxx.cloud.alipay.com
-```
 
-把这个地址填到小程序的 `app.js` 里：
+然后浏览器打开 `http://localhost:5173`
+
+---
+
+## ☁️ 云函数调用方式
+
+前端通过 `uniCloud.callFunction()` 调用云函数，所有接口都走同一个云函数入口 `cloudfunctions`，用 `action` 参数区分：
+
 ```javascript
-// parenting-guardian-miniprogram/app.js
-globalData: {
-  serverUrl: 'https://你的云函数地址'  // 改成你的地址
-}
+// 调用示例
+uniCloud.callFunction({
+  name: 'cloudfunctions',  // 云函数名
+  data: {
+    action: 'auth.login',  // 具体动作
+    data: {                // 业务参数
+      phone: '138xxxx8888',
+      password: '123456'
+    }
+  },
+  success: (res) => {
+    console.log(res.result)  // 返回结果
+  }
+})
 ```
+
+### 所有 action 列表
+
+**认证模块：**
+- `auth.login` - 手机号密码登录
+- `auth.register` - 用户注册
+- `auth.sendCode` - 发送验证码
+- `auth.wechatLogin` - 微信小程序登录
+- `auth.logout` - 退出登录
+
+**用户模块：**
+- `user.getProfile` - 获取用户资料
+- `user.updateProfile` - 更新用户资料
+- `user.setEmergencyPhone` - 设置紧急联系电话
+
+**绑定模块：**
+- `binding.generateCode` - 生成绑定码（家长）
+- `binding.apply` - 申请绑定（孩子）
+- `binding.confirm` - 确认绑定（家长）
+- `binding.getChildren` - 获取孩子列表
+- `binding.getParent` - 获取家长信息
+- `binding.unbind` - 解除绑定
+
+**设备模块：**
+- `device.register` - 注册设备
+- `device.heartbeat` - 心跳上报
+- `device.status` - 设备状态
+- `device.controlStatus` - 控制状态
+
+**使用统计：**
+- `usage.report` - 上报使用数据
+- `usage.daily` - 日统计
+- `usage.ranking` - 应用排行
+- `usage.timeline` - 使用时间轴
+- `usage.summary` - 使用汇总
+- `usage.stats` - 综合统计
+
+**位置模块：**
+- `location.report` - 上报位置
+- `location.current` - 当前位置
+- `location.history` - 历史位置
+- `location.trajectory` - 移动轨迹
+
+**指令模块：**
+- `command.lock` - 发送锁屏指令
+- `command.unlock` - 发送解锁指令
+- `command.poll` - 轮询指令（孩子端）
+- `command.execute` - 确认执行
+- `command.history` - 指令历史
+- `command.setLimit` - 设置使用限制
+
+**告警模块：**
+- `alert.sos` - SOS 求助
+- `alert.list` - 告警列表
+- `alert.read` - 标记已读
+- `alert.settings` - 告警设置
+- `alert.updateSettings` - 更新设置
+- `alert.sendEmergency` - 发送紧急求助
+
+**围栏模块：**
+- `geofence.create` - 创建围栏
+- `geofence.list` - 围栏列表
+- `geofence.update` - 更新围栏
+- `geofence.delete` - 删除围栏
 
 ---
 
 ## 📱 绑定设备流程
 
-部署完成后，需要绑定家长和孩子的账号：
-
-1. **家长端**：在微信小程序登录（微信一键登录）
-2. **家长端**：进入「设置 → 管理孩子设备 → 生成绑定码」
-3. **孩子端**：在 App 里输入绑定码
-4. **家长端**：确认绑定
-5. 完成！可以开始监控了
+1. **家长端**：登录 → 设置 → 管理孩子设备 → 生成绑定码
+2. **孩子端**：登录 → 输入绑定码 → 申请绑定
+3. **家长端**：收到申请 → 确认绑定
+4. 完成！可以开始监控了
 
 ---
 
 ## 🔧 常见问题
 
-### Q: H5 演示版启动报错怎么办？
-A: 检查 Node.js 版本，建议使用 16.x 或 18.x。执行 `node -v` 查看版本。
+### Q: 云函数上传失败怎么办？
+A: 检查网络是否通畅，确认 SpaceID 配置正确。右键云函数目录 → 「查看云函数日志」可以看错误信息。
 
 ### Q: 微信小程序提示「request 合法域名校验失败」？
-A: 开发阶段在微信开发者工具 → 详情 → 本地设置 → 勾选「不校验合法域名」。
-上线前需要在微信公众平台配置 request 合法域名为你的支付宝云地址。
+A: 开发阶段：微信开发者工具 → 详情 → 本地设置 → 勾选「不校验合法域名」。
+上线前：在微信公众平台配置 request 合法域名为你的支付宝云地址。
 
 ### Q: 孩子端 App 锁屏功能不生效？
 A: 需要授予「设备管理员」权限。首次使用锁屏功能时会引导开启，按照提示操作即可。
+另外原生插件需要打「自定义基座」才能调试。
 
-### Q: 怎么获取微信小程序的 AppID 和 AppSecret？
-A: 登录 [微信公众平台](https://mp.weixin.qq.com/) → 开发 → 开发管理 → 开发设置 中查看。
+### Q: 怎么打自定义基座？
+A: HBuilderX → 运行 → 运行到手机或模拟器 → 制作自定义调试基座 → 按照提示操作。
 
 ### Q: 支付宝云收费吗？
 A: 有免费额度，个人学习使用基本不花钱。具体价格参考支付宝云官网。
 
 ---
 
-## 📚 技术栈说明
+## 📚 技术栈
 
 | 模块 | 技术 |
 |---|---|
-| 孩子端 App | uni-app + Vue3 + 原生插件(Kotlin) |
-| 家长端小程序 | 微信小程序原生开发 |
-| 服务端 | Node.js + 支付宝云云函数 |
+| 前端 | uni-app (Vue2/Vue3) |
+| 孩子端原生插件 | Android (Kotlin) |
+| 服务端 | uniCloud 云函数 (Node.js) |
 | 数据库 | 支付宝云数据库 (MongoDB 风格) |
-| H5 演示版 | Vue3 + Vite + Pinia |
+| 状态管理 | Vuex / Pinia |
+
+---
+
+## 📄 相关文档
+
+- [uni-app 官方文档](https://uniapp.dcloud.net.cn/)
+- [uniCloud 官方文档](https://uniapp.dcloud.net.cn/uniCloud/)
+- [支付宝云文档](https://opendocs.alipay.com/mini/cloud)
 
 ---
 
