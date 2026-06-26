@@ -1,0 +1,50 @@
+{
+  "bsonType": "object",
+  "required": ["geofenceId", "childId", "eventType", "timestamp"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null",
+    "delete": "auth.uid != null"
+  },
+  "properties": {
+    "_id": {
+      "description": "事件ID，系统自动生成"
+    },
+    "geofenceId": {
+      "bsonType": "string",
+      "label": "围栏ID",
+      "description": "关联的围栏ID"
+    },
+    "childId": {
+      "bsonType": "string",
+      "label": "孩子用户ID",
+      "description": "触发事件的孩子用户ID"
+    },
+    "eventType": {
+      "enum": ["enter", "exit"],
+      "label": "事件类型",
+      "description": "enter=进入围栏，exit=离开围栏"
+    },
+    "latitude": {
+      "bsonType": "double",
+      "label": "纬度",
+      "description": "事件发生位置纬度"
+    },
+    "longitude": {
+      "bsonType": "double",
+      "label": "经度",
+      "description": "事件发生位置经度"
+    },
+    "timestamp": {
+      "bsonType": "timestamp",
+      "label": "发生时间",
+      "description": "事件发生时间"
+    },
+    "duration": {
+      "bsonType": "int",
+      "label": "停留时长(秒)",
+      "description": "在围栏内停留时长，单位：秒"
+    }
+  }
+}

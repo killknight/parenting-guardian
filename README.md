@@ -13,7 +13,7 @@
 | 家长端（可选） | 编译为 H5，浏览器直接打开 | 家长 |
 | 服务端 | uniCloud 云函数（在 uni-app 项目里） | - |
 
-> 💡 **重点说明**：云函数直接放在 `uniCloud/cloudfunctions/` 目录下，跟着前端项目走，不需要单独的服务端项目！通过 `uniCloud.callFunction()` 调用。
+> 💡 **重点说明**：云函数直接放在 `uniCloud-alipay/cloudfunctions/` 目录下，跟着前端项目走，不需要单独的服务端项目！通过 `uniCloud.callFunction()` 调用。
 
 ## ✨ 功能特性
 
@@ -72,9 +72,9 @@ parenting-guardian/
 │   │   ├── UsageStats/               # 应用使用统计
 │   │   ├── DevicePolicy/             # 设备管理员/锁屏
 │   │   └── ForegroundService/        # 前台服务保活
-│   ├── uniCloud/                     # ☁️ 云函数（跟着前端项目走）
-│   │   ├── cloudfunctions/
-│   │   │   └── cloudfunctions/       # 统一入口云函数
+│   ├── uniCloud-alipay/              # ☁️ uniCloud 支付宝云
+│   │   ├── cloudfunctions/           # 云函数
+│   │   │   └── api/                  # 统一入口云函数
 │   │   │       ├── index.js          # 入口（路由到各模块）
 │   │   │       ├── auth/             # 认证模块
 │   │   │       ├── user/             # 用户模块
@@ -86,6 +86,16 @@ parenting-guardian/
 │   │   │       ├── alert/            # 告警模块
 │   │   │       ├── geofence/         # 围栏模块
 │   │   │       └── package.json
+│   │   ├── database/                 # 数据库 Schema
+│   │   │   ├── users.schema.json
+│   │   │   ├── devices.schema.json
+│   │   │   ├── bindings.schema.json
+│   │   │   ├── usage_records.schema.json
+│   │   │   ├── location_records.schema.json
+│   │   │   ├── commands.schema.json
+│   │   │   ├── alerts.schema.json
+│   │   │   ├── geofences.schema.json
+│   │   │   └── geofence_events.schema.json
 │   │   └── space-info.json           # 云服务空间配置
 │   ├── api/                          # 接口封装（uniCloud.callFunction）
 │   ├── store/                        # 状态管理
@@ -94,7 +104,7 @@ parenting-guardian/
 ├── parenting-guardian-miniprogram/   # （可选）原生微信小程序版
 │   └── ...                           # 如需原生小程序开发可用这个
 ├── parenting-guardian-cloud/         # （旧）独立云函数目录
-│   └── ...                           # 已迁移到 parenting-guardian-app/uniCloud/
+│   └── ...                           # 已迁移到 parenting-guardian-app/uniCloud-alipay/
 └── parenting-guardian-h5/            # H5 演示版（Vue3 + Vite）
     └── ...                           # 快速预览效果用
 ```
@@ -124,11 +134,11 @@ parenting-guardian/
 
 ### 第三步：上传云函数
 
-1. 在 HBuilderX 中，右键 `uniCloud/cloudfunctions/cloudfunctions` 目录
+1. 在 HBuilderX 中，右键 `uniCloud-alipay/cloudfunctions/api` 目录
 2. 点击「上传部署 → 上传并运行」
 3. 等待上传完成（第一次可能需要安装依赖，稍等几分钟）
 
-> ⚠️ 注意：云函数名是 `cloudfunctions`，前端调用时也用这个名字。
+> ⚠️ 注意：云函数名是 `api`，前端调用时也用这个名字。
 
 ### 第四步：创建数据库集合
 
@@ -192,12 +202,12 @@ npm run dev
 
 ## ☁️ 云函数调用方式
 
-前端通过 `uniCloud.callFunction()` 调用云函数，所有接口都走同一个云函数入口 `cloudfunctions`，用 `action` 参数区分：
+前端通过 `uniCloud.callFunction()` 调用云函数，所有接口都走同一个云函数入口 `api`，用 `action` 参数区分：
 
 ```javascript
 // 调用示例
 uniCloud.callFunction({
-  name: 'cloudfunctions',  // 云函数名
+  name: 'api',            // 云函数名
   data: {
     action: 'auth.login',  // 具体动作
     data: {                // 业务参数

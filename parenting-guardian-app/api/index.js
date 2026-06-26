@@ -3,7 +3,7 @@
  */
 
 // 云函数基础地址
-const BASE_URL = 'cloudfunctions'
+const BASE_URL = 'api'
 
 /**
  * 调用云函数

@@ -107,7 +107,7 @@
     },
     "uniCloud" : {
         "spaceId" : "env-00jy6g81zqkm",
-        "spaceProvider" : "aliyun",
+        "spaceProvider" : "alipay",
         "spaceName" : "parenting-guardian"
     }
 }
